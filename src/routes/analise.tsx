@@ -186,7 +186,11 @@ function AnalisePage() {
 
 function ResultCard({ result, onReset, onShare }: { result: AnalysisResult; onReset: () => void; onShare: () => void }) {
   const Icon = result.level === "safe" ? CheckCircle2 : result.level === "warn" ? AlertTriangle : ShieldAlert;
-  const tone = result.level === "safe" ? "safe" : result.level === "warn" ? "warn" : "danger";
+  const styles = {
+    safe: { badge: "bg-safe-soft text-safe", dot: "bg-safe", panel: "bg-safe-soft", panelLabel: "text-safe", label: "Parece seguro" },
+    warn: { badge: "bg-warn-soft text-warn-foreground", dot: "bg-warn", panel: "bg-warn-soft", panelLabel: "text-warn-foreground", label: "Atenção" },
+    danger: { badge: "bg-danger-soft text-danger", dot: "bg-danger", panel: "bg-danger-soft", panelLabel: "text-danger", label: "Perigoso" },
+  }[result.level];
   return (
     <div className="mt-10 animate-float-up rounded-[2rem] border border-border bg-card p-6 shadow-soft sm:p-10">
       <div className="grid items-center gap-8 sm:grid-cols-[auto_1fr]">
@@ -194,9 +198,9 @@ function ResultCard({ result, onReset, onShare }: { result: AnalysisResult; onRe
           <RiskMeter score={result.score} level={result.level} />
         </div>
         <div>
-          <div className={`inline-flex items-center gap-2 rounded-full bg-${tone}-soft px-4 py-1.5 text-sm font-bold text-${tone}`}>
+          <div className={`inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-bold ${styles.badge}`}>
             <Icon className="size-4" />
-            {result.level === "safe" ? "Parece seguro" : result.level === "warn" ? "Atenção" : "Perigoso"}
+            {styles.label}
           </div>
           <h2 className="mt-4 font-display text-3xl font-extrabold text-foreground sm:text-4xl">
             {result.headline}
@@ -210,15 +214,15 @@ function ResultCard({ result, onReset, onShare }: { result: AnalysisResult; onRe
         <ul className="mt-3 space-y-2.5">
           {result.reasons.map((r, i) => (
             <li key={i} className="flex gap-3 text-base text-foreground/80">
-              <span className={`mt-1 inline-block size-2 shrink-0 rounded-full bg-${tone}`} />
+              <span className={`mt-1 inline-block size-2 shrink-0 rounded-full ${styles.dot}`} />
               {r}
             </li>
           ))}
         </ul>
       </div>
 
-      <div className={`mt-5 rounded-2xl bg-${tone}-soft p-5 sm:p-6`}>
-        <p className={`text-sm font-bold uppercase tracking-wider text-${tone}`}>O que fazer agora</p>
+      <div className={`mt-5 rounded-2xl p-5 sm:p-6 ${styles.panel}`}>
+        <p className={`text-sm font-bold uppercase tracking-wider ${styles.panelLabel}`}>O que fazer agora</p>
         <p className="mt-2 text-lg font-semibold leading-snug text-foreground">{result.recommendation}</p>
       </div>
 
