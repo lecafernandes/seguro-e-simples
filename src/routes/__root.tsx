@@ -77,10 +77,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "author", content: "Não Cai Nessa" },
       { name: "theme-color", content: "#1a2a6c" },
       { property: "og:title", content: "Não Cai Nessa — Descubra golpes em segundos" },
-      { property: "og:description", content: "IA contra golpes do PIX, falso banco, links suspeitos e mais. Feito para todos." },
+      { property: "og:description", content: "Use inteligência artificial para identificar golpes em mensagens, links, áudios e sites. Simples, rápido e seguro." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Não Cai Nessa — Descubra golpes em segundos" },
+      { name: "twitter:description", content: "Use inteligência artificial para identificar golpes em mensagens, links, áudios e sites. Simples, rápido e seguro." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/f98084ca-0714-40cf-9008-e492dec2a25c/id-preview-8501ee81--d6e1f977-877f-4d42-8360-6158aee00c59.lovable.app-1780055926233.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/f98084ca-0714-40cf-9008-e492dec2a25c/id-preview-8501ee81--d6e1f977-877f-4d42-8360-6158aee00c59.lovable.app-1780055926233.png" },
     ],
     links: [
       {
