@@ -1,0 +1,16 @@
+{
+  "name": "Não Cai Nessa",
+  "short_name": "Não Cai Nessa",
+  "description": "Descubra golpes em mensagens, links, áudios e sites com inteligência artificial.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#1a2a6c",
+  "lang": "pt-BR",
+  "categories": ["security", "utilities", "education"],
+  "icons": [
+    { "src": "/favicon.ico", "sizes": "any", "type": "image/x-icon" }
+  ]
+}
