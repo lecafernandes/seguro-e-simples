@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { RiskMeter } from "@/components/RiskMeter";
-import { analyzeText, analyzeLink, type AnalysisResult } from "@/lib/analyze";
+import { analyzeText, analyzeLink, analyzeAudio, analyzeSite, type AnalysisResult } from "@/lib/analyze";
 
 const tipoSchema = z.object({
   tipo: z.enum(["texto", "link", "audio", "site"]).default("texto"),
@@ -60,7 +60,11 @@ function AnalisePage() {
     setLoading(true);
     setResult(null);
     setTimeout(() => {
-      const r = tipo === "link" || tipo === "site" ? analyzeLink(value) : analyzeText(value);
+      const r =
+        tipo === "link" ? analyzeLink(value)
+        : tipo === "site" ? analyzeSite(value)
+        : tipo === "audio" ? analyzeAudio(value)
+        : analyzeText(value);
       setResult(r);
       setLoading(false);
     }, 900);
@@ -126,7 +130,7 @@ function AnalisePage() {
                 <p className="mt-1 text-sm text-muted-foreground">Toque para escolher um arquivo de áudio</p>
                 <input type="file" accept="audio/*" className="hidden" onChange={(e) => {
                   const f = e.target.files?.[0];
-                  if (f) setValue(`Áudio: ${f.name} (${Math.round(f.size/1024)} KB)`);
+                  if (f) setValue("Arquivo de áudio selecionado. Descreva abaixo o que a pessoa disse no áudio para analisarmos.");
                 }} />
               </label>
               <p className="text-center text-sm text-muted-foreground">
